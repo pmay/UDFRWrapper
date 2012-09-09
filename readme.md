@@ -12,6 +12,7 @@ This code generates a Fido signature file from the data in the UDFR registry. It
 
 ## Generating a signature file
 To generate a conf\udfr_formats.xml file run:
+
     python fido_prepare.py
 
 The conf dir will be created in the same directory as the fido_prepare.py file.
@@ -26,4 +27,5 @@ Some minor changes have to be made to Fido. Comment out the following lines:
 3. line 737: defaults['format_files'].append(defaults['xml_fidoExtensionSignature'])
 
 Then run Fido with the -loadformat argument:
+
     python fido -loadformat conf\udfr_formats.xml <file_to_identify>

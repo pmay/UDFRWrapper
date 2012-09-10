@@ -11,9 +11,9 @@ This should install all the necessary dependencies.
 This code generates a Fido signature file from the data in the UDFR registry. It is proof-of-concept code and has not been tested for completeness or correctness (i.e. it may not have all signatures or deliver all features Fido supports). It is based on the fido prepare.py code maintained by Maurice de Rooij.
 
 ## Generating a signature file
-To generate a conf\udfr_formats.xml file run:
+To generate a conf\udfr_formats.xml file run (the http proxy is optional):
 
-    python fido_prepare.py
+    python fido_prepare.py http://username:password@proxyurl:port format
 
 The conf dir will be created in the same directory as the fido_prepare.py file.
 

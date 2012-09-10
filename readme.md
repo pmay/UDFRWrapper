@@ -13,7 +13,7 @@ This code generates a Fido signature file from the data in the UDFR registry. It
 ## Generating a signature file
 To generate a conf\udfr_formats.xml file run (the http proxy is optional):
 
-    python fido_prepare.py http://username:password@proxyurl:port format
+    python fido_prepare.py http://username:password@proxyurl:port
 
 The conf dir will be created in the same directory as the fido_prepare.py file.
 

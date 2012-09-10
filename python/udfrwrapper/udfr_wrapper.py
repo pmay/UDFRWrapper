@@ -40,12 +40,15 @@ class UDFRWrapper:
         """
         
     QUERY3 = QPREFIX + """
-            SELECT ?puid ?format ?siguri
+            SELECT ?puid ?format ?siguri ?mime
             WHERE { ?uri     rdf:type                         udfrs:FileFormat;
                              rdfs:label                       ?format;
                              udfrs:signature                  ?siguri;
+							 udfrs:mimeType                   ?mimeT;
                              udfrs:aliasIdentifier            ?aid.
                     ?siguri  rdf:type                         udfrs:InternalSignature.
+					?mimeT   rdf:type                         udfrs:MIME;
+                             rdfs:label                       ?mime.
                     ?aid     udfrs:identifierNamespaceType    udfrs:PUID;
                              udfrs:identifierValue            ?puid.
             }
@@ -69,7 +72,7 @@ class UDFRWrapper:
         self.sparql.setReturnFormat(JSON)
         
     def getAllFileFormats(self):
-        """Returns the PUID, format label and UDFR Internal Signature URIs for all file formats"""
+        """Returns the PUID, format label, mime-type and UDFR Internal Signature URIs for all file formats"""
         self.sparql.setQuery(self.QUERY3)
         results = self.sparql.query().convert()
         return results

@@ -85,6 +85,10 @@ class FormatInfo:
         # eldict should contain PUID
         puid = eldict['puid']['value']
         ET.SubElement(fido_format, 'puid').text = puid
+		
+		# mime type
+        mime = eldict['mime']['value']
+        ET.SubElement(fido_format, 'mime').text = mime
         
         # name
         name = eldict['format']['value']
@@ -430,8 +434,17 @@ def convert_to_regex(chars, endianness='', pos='BOF', offset='0', maxoffset=''):
     buf.close()
     return val
 
+def set_proxy(proxy=''):
+    os.environ['http_proxy'] = proxy
+    os.environ['HTTP_PROXY'] = proxy
+	
 def main(arg=None):
     import sys
+	
+	if len(arg)==2:
+        # if behind a firewall, specify the proxy in http://username:password@proxyurl:port format
+        print "Setting proxy: ",arg[1]
+        set_proxy(arg[1])
 
     mydir = os.path.abspath(os.path.dirname(__file__))
     print(mydir)
@@ -443,4 +456,4 @@ def main(arg=None):
     print >> sys.stderr, 'Converted {0} UDFR formats to FIDO signatures'.format(len(info.formats))
     
 if __name__ == '__main__':
-    main()    
+    main(sys.argv)    
